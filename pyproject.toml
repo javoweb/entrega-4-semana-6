@@ -1,0 +1,15 @@
+[project]
+name = "entregasalpes"
+version = "1.0.0"
+authors = []
+description = "Proyecto de Entregas de los Alpes"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+pythonpath = [
+  ".", "src",
+]
