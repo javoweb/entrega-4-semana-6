@@ -1,9 +1,15 @@
-version: '3'
+version: '3.8'
 networks:
   pulsar:
     driver: bridge
   sidecar:
     driver: bridge
+
+volumes:
+  zookeeper:
+  bookkeeper:
+  db:
+
 services:
 # Start zookeeper
   zookeeper:
@@ -14,7 +20,7 @@ services:
     networks:
       - pulsar
     volumes:
-      - ./data/zookeeper:/pulsar/data/zookeeper
+      - zookeeper:/pulsar/data
     environment:
       - metadataStoreUrl=zk:zookeeper:2181
     command: >
@@ -65,7 +71,7 @@ services:
         condition: service_completed_successfully
   # Map the local directory to the container to avoid bookie startup failure due to insufficient container disks.
     volumes:
-      - ./data/bookkeeper:/pulsar/data/bookkeeper
+      - bookkeeper:/pulsar/data
     command: bash -c "bin/apply-config-from-env.py conf/bookkeeper.conf
       && exec bin/pulsar bookie"
 
@@ -86,7 +92,7 @@ services:
       - managedLedgerDefaultWriteQuorum=1
       - managedLedgerDefaultAckQuorum=1
       - advertisedAddress=broker
-      - advertisedListeners=external:pulsar://127.0.0.1:6650
+      - advertisedListeners=external:pulsar://broker:6650
     depends_on:
       zookeeper:
         condition: service_healthy
