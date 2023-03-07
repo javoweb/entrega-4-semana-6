@@ -6,9 +6,9 @@ from adquisiciones.modulos.adquisiciones.aplicacion.mapeadores import MapeadorAd
 from adquisiciones.modulos.adquisiciones.dominio.entidades import Adquisicion
 
 from dataclasses import dataclass
-from .base import CrearadquisicionBaseHandler
+from .base import CrearAdquisicionBaseHandler
 
-from adquisicion.seedwork.infraestructura.uow import UnidadTrabajoPuerto
+from adquisiciones.seedwork.infraestructura.uow import UnidadTrabajoPuerto
 
 @dataclass
 class CrearAdquisicion(Comando):

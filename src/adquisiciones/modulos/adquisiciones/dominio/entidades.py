@@ -6,7 +6,7 @@ from datetime import datetime
 import uuid
 
 @dataclass
-class adquisicion(AgregacionRaiz):
+class Adquisicion(AgregacionRaiz):
     producto: str = field(default=None)
     fecha: datetime = field(default=None)
     cantidad: int = field(default=None)
