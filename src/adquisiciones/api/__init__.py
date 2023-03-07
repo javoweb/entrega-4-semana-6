@@ -19,7 +19,7 @@ def comenzar_consumidor(app):
     import adquisiciones.modulos.adquisiciones.infraestructura.consumidores as adquisiciones
 
     ### Subscripcion eventos
-    threading.Thread(target=adquisiciones.suscribirse_a_eventos).start()
+    threading.Thread(target=adquisiciones.suscribirse_a_eventos, args=[app]).start()
 
     ### Subscripcion comandos
     threading.Thread(target=adquisiciones.suscribirse_a_comandos).start()
