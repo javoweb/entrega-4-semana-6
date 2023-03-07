@@ -25,7 +25,7 @@ class CrearAdquisicionHandler(CrearAdquisicionBaseHandler):
         adquisicion: Adquisicion = self.fabrica_adquisicion.crear_objeto(adquisicion_dto, MapeadorAdquisicion())
         adquisicion.crear_adquisicion(adquisicion)
         repositorio = self.fabrica_repositorio.crear_objeto(RepositorioAdquisicion.__class__)
-        #repositorio.agregar(pedido)
+        #repositorio.agregar(adquisicion)
         
         UnidadTrabajoPuerto.registrar_batch(repositorio.agregar, adquisicion)
         UnidadTrabajoPuerto.savepoint()

@@ -3,10 +3,11 @@ import json
 from adquisiciones.seedwork.dominio.excepciones import ExcepcionDominio
 from adquisiciones.seedwork.aplicacion.queries import ejecutar_query
 from adquisiciones.seedwork.aplicacion.comandos import ejecutar_commando
-from flask import Response, request
-from adquisiciones.modulos.adquisiciones.aplicacion.mapeadores import MapeadoradquisicionesDTOJson
-from adquisiciones.modulos.adquisiciones.aplicacion.comandos.crear_adquisiciones import Crearadquisiciones
-from adquisiciones.modulos.adquisiciones.aplicacion.queries.obtener_adquisiciones import Obteneradquisiciones
+from flask import redirect, render_template, request, session, url_for
+from flask import Response
+from adquisiciones.modulos.adquisiciones.aplicacion.mapeadores import MapeadorAdquisicionDTOJson
+from adquisiciones.modulos.adquisiciones.aplicacion.comandos.crear_adquisicion import CrearAdquisicion
+from adquisiciones.modulos.adquisiciones.aplicacion.queries.obtener_adquisicion import ObtenerAdquisicion
 
 bp = api.crear_blueprint('adquisiciones', '/adquisiciones')
 
@@ -16,12 +17,12 @@ def reservar_asincrona():
     try:
         adquisiciones_dict = request.json
 
-        map_adquisiciones = MapeadoradquisicionesDTOJson()
+        map_adquisiciones = MapeadorAdquisicionDTOJson()
         adquisiciones_dto = map_adquisiciones.externo_a_dto(adquisiciones_dict) 
 
-        comando = Crearadquisiciones(id_client=adquisiciones_dto.id_client, 
-            fecha_orden=adquisiciones_dto.fecha_orden, 
-            numero_orden=adquisiciones_dto.numero_orden)
+        comando = CrearAdquisicion(producto=adquisiciones_dto.producto, 
+            fecha=adquisiciones_dto.fecha, 
+            cantidad=adquisiciones_dto.cantidad)
         ejecutar_commando(comando)
 
         return Response('{}', status=202, mimetype='application/json')
@@ -32,8 +33,8 @@ def reservar_asincrona():
 @bp.route('/<id>', methods=('GET',))
 def get_adquisiciones(id=None):
     if id:
-        query_resultado = ejecutar_query(Obteneradquisiciones(id))
-        map_adquisiciones = MapeadoradquisicionesDTOJson()
+        query_resultado = ejecutar_query(ObtenerAdquisicion(id))
+        map_adquisiciones = MapeadorAdquisicionDTOJson()
         return map_adquisiciones.dto_a_externo(query_resultado.resultado)
     else: 
         return [{'message': 'GET!'}]

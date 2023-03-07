@@ -1,7 +1,7 @@
 from adquisiciones.seedwork.aplicacion.dto import Mapeador as AppMap
 from adquisiciones.seedwork.dominio.repositorios import Mapeador as RepMap
 from adquisiciones.modulos.adquisiciones.dominio.entidades import Adquisicion
-from .dto import AsquisicionDTO
+from .dto import AdquisicionDTO
 from datetime import datetime
 
 class MapeadorAdquisicionDTOJson(AppMap):

@@ -2,7 +2,7 @@ import pulsar
 from pulsar.schema import *
 
 from adquisiciones.modulos.adquisiciones.infraestructura.schema.v1.eventos import EventoAdquisicionCreada, AdquisicionCreadaPayload
-# from adquisicion.modulos.adquisicions.infraestructura.schema.v1.comandos import ComandoCrearOrden, ComandoCrearOrdenPayload
+# from adquisicion.modulos.adquisiciones.infraestructura.schema.v1.comandos import ComandoCrearOrden, ComandoCrearOrdenPayload
 from adquisiciones.seedwork.infraestructura import utils
 
 import datetime
