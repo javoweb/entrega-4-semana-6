@@ -6,7 +6,7 @@ from . import TipoCliente
 import uuid
 
 
-class RegistrarUsuario(Record):
+class CrearOrden(Record):
     nombres = String()
     apellidos = String()
     email = String()
@@ -14,53 +14,15 @@ class RegistrarUsuario(Record):
     fecha_creacion = Long()
 
 
-class ValidarUsuario(Record):
-    id = String()
-    fecha_validacion = Long()
-
-
-class DesactivarUsuario(Record):
-    id = String()
-    fecha_desactivacion = Long()
-
-
-class ComandoRegistrarUsuario(ComandoIntegracion):
+class ComandoCrearOrden(ComandoIntegracion):
     id = String(default=str(uuid.uuid4()))
     time = Long()
     ingestion = Long(default=time_millis())
     specversion = String(default="v1")
-    type = String(default="RegistrarUsuario")
+    type = String(default="CrearOrden")
     datacontenttype = String()
     service_name = String(default="edla.ordenes")
-    data = RegistrarUsuario
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class ComandoValidarUsuario(ComandoIntegracion):
-    id = String(default=str(uuid.uuid4()))
-    time = Long()
-    ingestion = Long(default=time_millis())
-    specversion = String(default="v1")
-    type = String(default="ValidarUsuario")
-    datacontenttype = String()
-    service_name = String(default="edla.ordenes")
-    data = ValidarUsuario
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-
-class ComandoDesactivarUsuario(ComandoIntegracion):
-    id = String(default=str(uuid.uuid4()))
-    time = Long()
-    ingestion = Long(default=time_millis())
-    specversion = String(default="v1")
-    type = String(default="DesactivarUsuario")
-    datacontenttype = String()
-    service_name = String(default="edla.ordenes")
-    data = DesactivarUsuario
+    data = CrearOrden
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
