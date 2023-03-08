@@ -1,7 +1,7 @@
 from ....seedwork.aplicacion.comandos import Comando, ComandoHandler
 from ....seedwork.aplicacion.comandos import ejecutar_commando as comando
-from ....modulos.dominio.entidades import ClienteNatural, ClienteEmpresa, Usuario
-from ....modulos.dominio.objetos_valor import Cedula, Email, Nombre, Rut
+from ....modulos.dominio.entidades import Orden
+from ....modulos.dominio.objetos_valor import Email, Nombre
 from dataclasses import dataclass
 import datetime
 import time
@@ -18,7 +18,7 @@ class ComandoCrearOrden(Comando):
 
 class CrearOrdenHandler(ComandoHandler):
 
-    def a_entidad(self, comando: ComandoCrearOrden) -> Usuario:
+    def a_entidad(self, comando: ComandoCrearOrden) -> Orden:
         params = dict(
             nombre=Nombre(comando.nombres, comando.apellidos),
             email=Email(comando.email, None, comando.es_empresarial),
@@ -26,16 +26,10 @@ class CrearOrdenHandler(ComandoHandler):
             fecha_actualizacion=datetime.datetime.now()
         )
 
-        if comando.es_empresarial:
-            cliente = ClienteEmpresa(**params)
-        else:
-            cliente = ClienteNatural(**params)
-
-        return cliente
+        return Orden(**params)
 
     def handle(self, comando: ComandoCrearOrden):
-
-        usuario = self.a_entidad(comando)
+        orden = self.a_entidad(comando)
 
 
 @comando.register(ComandoCrearOrden)

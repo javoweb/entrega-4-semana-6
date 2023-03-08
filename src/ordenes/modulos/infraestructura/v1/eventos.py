@@ -1,16 +1,15 @@
-from pulsar.schema import String, Long, Record
+from pulsar.schema import String, Long, Record, Array
 from ....seedwork.infraestructura.schema.v1.eventos import EventoIntegracion
 from ....seedwork.infraestructura.utils import time_millis
-from . import TipoCliente
 import uuid
 
 
-class UsuarioRegistrado(Record):
+class OrdenCreada:
     id = String()
     nombres = String()
     apellidos = String()
     email = String()
-    tipo_cliente = TipoCliente
+    productos = Array(String())
     fecha_creacion = Long()
 
 
@@ -32,7 +31,7 @@ class EventoUsuario(EventoIntegracion):
     type = String(default="EventoUsuario")
     datacontenttype = String()
     service_name = String(default="edla.ordenes")
-    usuario_registrado = UsuarioRegistrado
+    usuario_registrado = OrdenCreada
     usuario_validado = UsuarioValidado
     usuario_desactivado = UsuarioDesactivado
 

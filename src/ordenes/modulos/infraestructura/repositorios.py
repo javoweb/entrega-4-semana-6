@@ -1,4 +1,4 @@
-from ...modulos.dominio.entidades import Usuario
+from ...modulos.dominio.entidades import Orden
 from ...modulos.dominio.repositorios import RepositorioOrdenes
 
 

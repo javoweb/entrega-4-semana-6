@@ -17,17 +17,16 @@ class Nombre(ObjetoValor):
 @dataclass(frozen=True)
 class Email(ObjetoValor):
     address: str
-    dominio: str
-    es_empresarial: bool
+
+@dataclass(frozen=True)
+class Direccion(ObjetoValor):
+    calle_principal: str
+    calle_secundaria: str
+    numero: str
+    referencia: str
 
 
 @dataclass(frozen=True)
-class Cedula(ObjetoValor):
-    numero: int
-    ciudad: Ciudad
-
-
-@dataclass(frozen=True)
-class Rut(ObjetoValor):
-    numero: int
-    ciudad: Ciudad
+class Producto(ObjetoValor):
+    nombre: str
+    cantidad: int

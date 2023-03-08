@@ -5,22 +5,16 @@ En este archivo usted encontrará las entidades del dominio de ordenes
 """
 
 from datetime import datetime
+from typing import List
+
 from ...seedwork.dominio.entidades import Entidad, AgregacionRaiz
 from dataclasses import dataclass, field
 
-from .objetos_valor import Nombre, Email, Cedula, Rut
+from .objetos_valor import Nombre, Email, Direccion, Producto
 
 @dataclass
-class Usuario(Entidad):
-    nombre: Nombre = field(default_factory=Nombre)
+class Orden(AgregacionRaiz):
+    nombre_cliente: Nombre = field(default_factory=Nombre)
     email: Email = field(default_factory=Email)
-
-@dataclass
-class ClienteNatural(Usuario, AgregacionRaiz):
-    cedula: Cedula = None
-    fecha_nacimiento: datetime = None
-
-@dataclass
-class ClienteEmpresa(Usuario, AgregacionRaiz):
-    rut: Rut = None
-    fecha_constitucion: datetime = None
+    direccion: Direccion = field(default_factory=Direccion)
+    productos: List[Producto] = field(default_factory=List[Producto])

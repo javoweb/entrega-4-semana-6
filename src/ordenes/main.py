@@ -3,10 +3,8 @@ from .config.api import app_configs, settings
 from .api.v1.router import router as v1
 
 from .modulos.infraestructura.consumidores import suscribirse_a_topico
-from .modulos.infraestructura.v1.eventos import EventoUsuario, UsuarioValidado, \
-    UsuarioDesactivado, UsuarioRegistrado, TipoCliente
+from .modulos.infraestructura.v1.eventos import EventoUsuario, OrdenCreada
 from .modulos.infraestructura.v1.comandos import ComandoCrearOrden, CrearOrden
-from .modulos.infraestructura.v1 import TipoCliente
 from .modulos.infraestructura.despachadores import Despachador
 from .seedwork.infraestructura import utils
 
@@ -44,7 +42,7 @@ async def prueba_crear_orden() -> dict[str, str]:
         nombres="Juan",
         apellidos="Urrego",
         email="js.urrego110@aeroalpes.net",
-        tipo_cliente=TipoCliente.natural,
+        tipo_cliente=1,
         fecha_creacion=utils.time_millis()
     )
 

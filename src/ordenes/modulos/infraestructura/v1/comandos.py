@@ -2,7 +2,6 @@ from pulsar.schema import String, Long, Record
 from dataclasses import dataclass, field
 from ....seedwork.infraestructura.schema.v1.comandos import (ComandoIntegracion)
 from ....seedwork.infraestructura.utils import time_millis
-from . import TipoCliente
 import uuid
 
 
@@ -10,7 +9,7 @@ class CrearOrden(Record):
     nombres = String()
     apellidos = String()
     email = String()
-    tipo_cliente = TipoCliente
+    tipo_cliente = Long()
     fecha_creacion = Long()
 
 

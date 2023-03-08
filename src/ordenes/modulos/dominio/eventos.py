@@ -1,22 +1,10 @@
-from pulsar.schema import String, Long
-
-from ..infraestructura.v1 import TipoCliente
+from pulsar.schema import String, Long, Array
 
 
-class UsuarioRegistrado:
+class OrdenCreada:
     id = String()
     nombres = String()
     apellidos = String()
     email = String()
-    tipo_cliente = TipoCliente
+    productos = Array(String())
     fecha_creacion = Long()
-
-
-class UsuarioValidado:
-    id = String()
-    fecha_validacion = Long()
-
-
-class UsuarioDesactivado:
-    id = String()
-    fecha_desactivacion = Long()
