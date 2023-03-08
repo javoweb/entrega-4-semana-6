@@ -1,5 +1,7 @@
 ## Describa el cambio
 +
+## Razonamiento pedagógico
++
 
 ### Lista de chequeo
 - [ ] Ejecuté el proyecto de forma local o usando Gitpod

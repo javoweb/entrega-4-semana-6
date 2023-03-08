@@ -1,8 +1,10 @@
 [project]
-name = "entregasalpes"
+name = "eda"
 version = "1.0.0"
-authors = []
-description = "Proyecto de Entregas de los Alpes"
+authors = [
+  { name="Juan Urrego", email="js.urrego110@uniandes.edu.co" },
+]
+description = "Proyecto de ejemplo de Empresa transporte de los alpes"
 readme = "README.md"
 requires-python = ">=3.10"
 

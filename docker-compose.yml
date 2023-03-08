@@ -109,9 +109,9 @@ services:
       - SYS_NICE
     restart: always
     environment:
-      - MYSQL_DATABASE=reservas
+      - MYSQL_DATABASE=empaquetado
       - MYSQL_ROOT_PASSWORD=adminadmin
-    profiles: ["alpes", "db"]
+    profiles: ["eda", "db"]
     networks:
       - pulsar
     ports:
@@ -119,4 +119,67 @@ services:
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
-  # Servicios de Entregas de los Alpes
+  # Servicios de EDA
+  eda:
+    container_name: eda
+    hostname: eda
+    image: eda/flask 
+    profiles: ["eda", "monolito"]
+    networks:
+      - sidecar
+      - pulsar
+    labels:
+      SidecarDiscover: "false"
+    depends_on:
+      - broker
+      - db
+    environment:
+      - EDA_ADDRESS=eda
+      - PULSAR_ADDRESS=broker
+    ports:
+      - "5000:5000"
+  adaptador:
+    image: "eda/adaptador"
+    profiles: ["eda", "monolito"]
+    container_name: adaptador
+    hostname: adaptador
+    depends_on:
+      - eda
+    networks:
+      - sidecar
+    environment:
+      - EDA_ADDRESS=eda
+      - PULSAR_ADDRESS=broker
+    ports:
+      - "50051:50051"
+  
+  # Servicios de Notificación
+  notificacion:
+    container_name: notificacion
+    hostname: notificacion
+    image: eda/notificacion 
+    profiles: ["eda", "notificacion"]
+    depends_on:
+      - eda
+      - broker
+    environment:
+      - EDA_ADDRESS=eda
+      - PULSAR_ADDRESS=broker
+    networks:
+      - pulsar
+  # Servicio UI
+  ui:
+    container_name: ui
+    hostname: ui
+    image: eda/ui 
+    profiles: ["eda", "ui"]
+    depends_on:
+      - eda
+      - broker
+    environment:
+      - EDA_ADDRESS=eda
+      - PULSAR_ADDRESS=broker
+    networks:
+      - pulsar
+    ports:
+      - "5678:5678"
