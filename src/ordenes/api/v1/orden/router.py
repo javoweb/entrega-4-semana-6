@@ -18,8 +18,7 @@ async def crear_orden(crear_orden: CrearOrden,
         nombres=crear_orden.nombres,
         apellidos=crear_orden.apellidos,
         email=crear_orden.email,
-        password=crear_orden.password,
-        es_empresarial=crear_orden.es_empresarial
+        productos=crear_orden.productos,
     )
     background_tasks.add_task(ejecutar_commando, comando)
     return RespuestaAsincrona(mensaje="Registro de orden en proceso")

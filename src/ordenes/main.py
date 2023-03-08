@@ -42,7 +42,7 @@ async def prueba_crear_orden() -> dict[str, str]:
         nombres="Juan",
         apellidos="Urrego",
         email="js.urrego110@aeroalpes.net",
-        tipo_cliente=1,
+        productos=["producto1", "producto2"],
         fecha_creacion=utils.time_millis()
     )
 
