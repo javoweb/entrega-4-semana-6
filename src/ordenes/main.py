@@ -3,7 +3,7 @@ from .config.api import app_configs, settings
 from .api.v1.router import router as v1
 
 from .modulos.infraestructura.consumidores import suscribirse_a_topico
-from .modulos.infraestructura.v1.eventos import EventoUsuario, OrdenCreada
+from .modulos.infraestructura.v1.eventos import EventoOrdenes, OrdenCreada
 from .modulos.infraestructura.v1.comandos import ComandoCrearOrden, CrearOrden
 from .modulos.infraestructura.despachadores import Despachador
 from .seedwork.infraestructura import utils
@@ -21,7 +21,7 @@ tasks = list()
 async def app_startup():
     global tasks
     task1 = asyncio.ensure_future(
-        suscribirse_a_topico("evento-usuarios", "sub-cliente", EventoUsuario))
+        suscribirse_a_topico("evento-usuarios", "sub-cliente", EventoOrdenes))
     task2 = asyncio.ensure_future(
         suscribirse_a_topico("comando-crear-orden", "sub-com-crear-orden",
                              ComandoCrearOrden))

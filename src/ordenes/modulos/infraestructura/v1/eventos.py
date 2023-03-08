@@ -13,27 +13,15 @@ class OrdenCreada:
     fecha_creacion = Long()
 
 
-class UsuarioValidado(Record):
-    id = String()
-    fecha_validacion = Long()
-
-
-class UsuarioDesactivado(Record):
-    id = String()
-    fecha_desactivacion = Long()
-
-
-class EventoUsuario(EventoIntegracion):
+class EventoOrdenes(EventoIntegracion):
     id = String(default=str(uuid.uuid4()))
     time = Long()
     ingestion = Long(default=time_millis())
     specversion = String(default="v1")
-    type = String(default="EventoUsuario")
+    type = String(default="EventoOrdenes")
     datacontenttype = String()
     service_name = String(default="edla.ordenes")
-    usuario_registrado = OrdenCreada
-    usuario_validado = UsuarioValidado
-    usuario_desactivado = UsuarioDesactivado
+    orden_creada = OrdenCreada
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
