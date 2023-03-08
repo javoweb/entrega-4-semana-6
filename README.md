@@ -6,7 +6,7 @@
 Desplegar la base de datos y se deja abierta en la terminal.
 
 ```bash
-docker-compose --profiles db up
+docker-compose --profile db up
 ```
 
 ### En una nueva terminal desplegar apache pulsar.
