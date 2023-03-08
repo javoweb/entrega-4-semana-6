@@ -31,7 +31,7 @@ class EventoAdquisicionCreada(EventoIntegracion):
 HOSTNAME = os.getenv('PULSAR_ADDRESS', default="localhost")
 
 client = pulsar.Client(f'pulsar://{HOSTNAME}:6650')
-consumer = client.subscribe('eventos-adquisiciones', consumer_type=_pulsar.ConsumerType.Shared, subscription_name='sub-notificacion-eventos-adquisiciones', schema=AvroSchema(EventoAdquisicionCreada))
+consumer = client.subscribe('eventos-adquisiciones', consumer_type=_pulsar.ConsumerType.Shared, subscription_name='adquisiciones-sub-eventos', schema=AvroSchema(EventoAdquisicionCreada))
 
 while True:
     msg = consumer.receive()

@@ -6,10 +6,7 @@ class Adquisiciones():
     REST_API_ENDPOINT: str = '/adquisiciones/adquisiciones-comando'
 
     def CrearAdquisicion(self):
-        dict_obj = {"id": "101",
-                    "fecha_creacion": "10/02/2022",
-                    "fecha_actualizacion": "10/02/2023",
-                    "producto": "papel",
+        dict_obj = {"producto": "vasos",
                     "cantidad": 50,
                     "fecha": "10/02/2022"}
 

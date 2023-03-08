@@ -14,15 +14,15 @@ def importar_modelos_alchemy():
     import adquisiciones.modulos.adquisiciones.infraestructura.dto
 
 ### Subscripcion a Pulsar
-def comenzar_consumidor(app):
-    import threading
-    import adquisiciones.modulos.adquisiciones.infraestructura.consumidores as adquisiciones
+#def comenzar_consumidor(app):
+ #   import threading
+ #   import adquisiciones.modulos.adquisiciones.infraestructura.consumidores as adquisiciones
 
     ### Subscripcion eventos
-    threading.Thread(target=adquisiciones.suscribirse_a_eventos, args=[app]).start()
+#    threading.Thread(target=adquisiciones.suscribirse_a_eventos, args=[app]).start()
 
-    ### Subscripcion comandos
-    threading.Thread(target=adquisiciones.suscribirse_a_comandos).start()
+    #Subscripcion comandos
+  #  threading.Thread(target=adquisiciones.suscribirse_a_comandos, args=[app]).start()
 
 ### App Flask
 def create_app(configuracion={}):
@@ -49,8 +49,8 @@ def create_app(configuracion={}):
 
     with app.app_context():
         db.create_all()
-        if not app.config.get('TESTING'):
-            comenzar_consumidor(app)
+        #if not app.config.get('TESTING'):
+            #comenzar_consumidor(app)
 
      # Importa Blueprints
     from . import adquisiciones
@@ -65,8 +65,8 @@ def create_app(configuracion={}):
         swag['info']['title'] = "Adquisiciones API"
         return jsonify(swag)
 
-    @app.route("/health")
+    @app.route("/ping")
     def health():
-        return {"status": "up"}
+        return {"echo": "microservicio adquisiciones up"}
 
     return app
