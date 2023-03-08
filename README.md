@@ -84,3 +84,38 @@ python src/notificaciones/main.py
 ```bash
 curl http://localhost:5001/ping
 ```
+
+# Microservicio - Ordenes
+
+### Instalar dependencias
+
+```bash
+pip install -r requirements-ordenes.txt
+```
+
+### Ejecutar el microservicio
+
+```bash
+uvicorn ordenes.main:app --host localhost --port 8000 --reload
+```
+
+En caso de usar docker compose
+```bash
+docker compose --profile ordenes up  
+```
+
+### Probar el manejo de comandos
+
+Entrar dentro del contenedor
+
+```bash
+docker exec -it ordenes bash 
+```
+
+Ejecutar un curl al endpoint de prueba
+
+```bash
+curl http://localhost:8000/prueba-crear-orden 
+```
+
+> Nota: A veces es necesario ejecutarlo más de una vez.
