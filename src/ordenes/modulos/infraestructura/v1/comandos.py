@@ -8,6 +8,7 @@ class CrearOrden(Record):
     nombres = String()
     apellidos = String()
     email = String()
+    direccion = String()
     productos = Array(String())
     fecha_creacion = Long()
 

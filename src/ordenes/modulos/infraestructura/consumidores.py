@@ -5,6 +5,7 @@ import aiopulsar
 import asyncio
 from pulsar.schema import Record, AvroSchema
 from ...seedwork.infraestructura import utils
+from ...seedwork.aplicacion.comandos import ejecutar_commando
 
 
 async def suscribirse_a_topico(topico: str, suscripcion: str, schema: type[Record],
@@ -22,6 +23,10 @@ async def suscribirse_a_topico(topico: str, suscripcion: str, schema: type[Recor
                     print(mensaje)
                     datos = mensaje.value()
                     print(f'Evento recibido: {datos}')
+                    try:
+                        ejecutar_commando(datos)
+                    except Exception as e:
+                        print(e)
                     await consumidor.acknowledge(mensaje)
 
     except:
