@@ -58,3 +58,29 @@ coverage run -m pytest
 ```bash
 coverage report
 ```
+
+# Microservicio - Adquisiciones
+
+### Ejecutar el microservicio
+
+```bash
+flask --app src/adquisiciones/api --debug run -p 5001
+```
+
+### Ejecutar el cliente
+
+```bash
+python src/cliente-adquisiciones/main.py
+```
+
+### Ejecutar las notificaciones
+
+```bash
+python src/notificaciones/main.py
+```
+
+### Monitoreo Ping-Echo
+
+```bash
+curl http://localhost:5001/ping
+```
