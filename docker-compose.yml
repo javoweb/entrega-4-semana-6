@@ -126,3 +126,20 @@ services:
       - ./data/mysql:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
   # Servicios de Entregas de los Alpes
+  # Servicio Ordenes
+  ordenes:
+    container_name: ordenes
+    hostname: ordenes
+    image: edla/ordenes
+    build:
+      context: .
+      dockerfile: Dockerfile.ordenes
+    profiles: [ "edla", "ordenes" ]
+    depends_on:
+      - broker
+    environment:
+      - BROKER_HOST=broker
+    networks:
+      - pulsar
+    ports:
+      - "8000:8000"

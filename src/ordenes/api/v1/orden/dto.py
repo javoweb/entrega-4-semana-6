@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class RegistrarUsuario(BaseModel):
+class CrearOrden(BaseModel):
     nombres: str
     apellidos: str
     email: str
