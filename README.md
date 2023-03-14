@@ -1,3 +1,8 @@
+# Diagrama solución
+
+![Diagrama](https://user-images.githubusercontent.com/4565451/224879488-6246a460-872f-467d-8188-354801b5919d.png)
+
+
 # Microservicio - Empaquetado
 
 
